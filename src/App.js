@@ -96,7 +96,7 @@ function App() {
   return (
     <>
       <div className='lg:mx-9 min-h-screen mx-auto flex flex-wrap md:flex-nowrap 
-        items-center  justify-center py-3'>
+        items-center  justify-center py-3' style={{margin:'100px', backgroundColor:'#dfdfdf', borderRadius:'15px'}}>
         {/* Input Panel  */}
 
         <div className='panel'>
