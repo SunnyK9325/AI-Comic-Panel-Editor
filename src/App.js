@@ -204,7 +204,7 @@ function App() {
 
       {/* preview comic section  */}
       <div className={`mx-auto flex flex-col justify-center items-center ${submitBtn ? 'my-40' : ''}`} 
-      style={{flexDirection:'row', backgroundColor:'yellow'}}>
+      style={{flexDirection:'row', backgroundColor:'#87C4FF'}}>
         {
           submitBtn ?
             <>
@@ -213,7 +213,7 @@ function App() {
                 {filteredImages.map((imageSrc, index) => (
                   <div key={index} className="relative" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                     <img
-                      style={{border:'20px solid lightgrey'}}
+                      style={{border:'10px solid white'}}
                       src={imageSrc}
                       alt={`Fetched ${index + 1}`}
                       className='block border-[0.1rem] rounded my-2 max-h-[50rem] max-w-[50rem] md:w-[80%] md:h-[80%]'

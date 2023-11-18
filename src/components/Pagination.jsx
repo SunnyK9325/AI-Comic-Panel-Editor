@@ -36,7 +36,7 @@ const Pagination = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
                     </div>
                 ) : imageArray[currentPage - 1] ? (
                     <div style={{ position: 'relative' }}>
-                        <img className='imgStyles' src={imageArray[currentPage - 1]} alt={`Fetched  `} style={{ border: '5px solid lightcyan' }} />
+                        <img className='imgStyles' src={imageArray[currentPage - 1]} alt={`Fetched  `} style={{ border: '2px solid #D2DE32' }} />
                         {bubbleArray[currentPage - 1] ? (
                             <div className='speechBubbleStyles'>{bubbleArray[currentPage - 1]}</div>
                         ) : null}

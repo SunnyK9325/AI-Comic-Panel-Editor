@@ -26,8 +26,13 @@
 .dashboard {
   box-sizing: border-box;
   width: 100%;
-  max-width: 100vw; /* Set the maximum width to the viewport width */
   padding: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    padding: 0;
+  }
 }
 
 .panel {

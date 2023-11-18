@@ -92,14 +92,18 @@
     
 }
 
+
 .speechBubbleStyles {
     position: absolute;
-    top: 0;
-    right: 0;
+    bottom: 20px; /* Adjusted to position the speech bubble at the bottom */
+    right: 20px;
     background-color: #fff;
     padding: 0.5rem;
-    border-radius: 0.25rem;
-}
+    border-radius: 0.5rem;
+    max-width: 300px; /* Set a maximum width for the speech bubble */  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
 
 .loaderContainerStyles {
     object-fit: cover;
