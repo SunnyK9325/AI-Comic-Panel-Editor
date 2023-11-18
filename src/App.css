@@ -15,8 +15,9 @@
   outline: none;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  /* Add box-shadow for a subtle lift effect */
+  width: auto; /* Set width to auto for same width as height */
 }
+
 
 .scroll-to-top:hover {
   background-color: #004080;
@@ -154,12 +155,7 @@ button {
 }
 
 button:hover {
-  background-color: rgb(200, 55, 42);
-}
-
-button:focus {
-  box-shadow: 0 0 0 0.25rem rgba(66, 153, 225, 0.5);
-  outline: none;
+  background-color: #FF8F8F;
 }
 
 .dark button {

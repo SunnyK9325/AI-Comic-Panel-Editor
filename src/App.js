@@ -1,7 +1,7 @@
 import './App.css';
 import './components/Pagination.css'
 import './components/PaginationItem.css'
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Pagination from './components/Pagination'
 import { query } from './api/handle';
 import { GoCommandPalette } from "react-icons/go";
@@ -84,7 +84,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-//////////////////////////  Scroll to top  //////////////////////////
+  //////////////////////////  Scroll to top  //////////////////////////
 
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -93,14 +93,16 @@ function App() {
     });
   };
 
-//////////////////////////  Scroll to bottom  //////////////////////////
+  //////////////////////////  Scroll to bottom  //////////////////////////
   const handleScroll = () => {
     setSubmitBtn(!submitBtn);
-    window.scroll({
-      top: document.body.offsetHeight,
-      left: 0, 
-      behavior: 'smooth',
-    });
+    if (!submitBtn) {
+      window.scroll({
+        top: document.body.offsetHeight,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   }
 
   const filteredImages = imageArray.filter((image) => image !== undefined);
@@ -109,7 +111,7 @@ function App() {
     <>
       <div className='dashboard m-0 p-0 flex justify-center items-center h-full w-full'>
         <div className=' py-6 w-full max-w-[1200px] flex flex-wrap md:flex-nowrap 
-        items-start  justify-center ' style={{backgroundColor: '#dfdfdf', borderRadius: '15px' }}>
+        items-start  justify-center ' style={{ backgroundColor: '#dfdfdf', borderRadius: '15px' }}>
 
           {/* Input Panel  */}
 
@@ -132,22 +134,26 @@ function App() {
               />
 
               {/* Prompt generate Button */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap:'wrap' }}>
-                
-                <button onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
-                </button>
-                
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+
                 {/* <button onClick={() => setSubmitBtn(!submitBtn)}  */}
-                <button onClick={handleScroll} 
-                style={{ display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center' }}>
+                <button onClick={handleScroll}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
                   {!submitBtn && <CiGrid2H style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />}
                   {
                     submitBtn ? 'Hide Preview' : 'Preview'
                   }
                 </button>
+
+                <button onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
+                </button>
+
+
               </div>
             </div>
 
@@ -203,17 +209,17 @@ function App() {
       </div>
 
       {/* preview comic section  */}
-      <div className={`mx-auto flex flex-col justify-center items-center ${submitBtn ? 'my-40' : ''}`} 
-      style={{flexDirection:'row', backgroundColor:'#87C4FF'}}>
+      <div className={`mx-auto flex flex-col justify-center items-center ${submitBtn ? 'my-40' : ''}`}
+        style={{ flexDirection: 'row', backgroundColor: 'white', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-evenly' }}>
         {
           submitBtn ?
             <>
               <span></span>
-              <div className="relative">
+              <div className="relative" style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {filteredImages.map((imageSrc, index) => (
-                  <div key={index} className="relative" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+                  <div key={index} className="relative" style={{ flex: '0 0 50%', boxSizing: 'border-box', padding: '5px' }}>
                     <img
-                      style={{border:'10px solid white'}}
+                      style={{ border: '1px solid black', margin: 'auto' }}
                       src={imageSrc}
                       alt={`Fetched ${index + 1}`}
                       className='block border-[0.1rem] rounded my-2 max-h-[50rem] max-w-[50rem] md:w-[80%] md:h-[80%]'
@@ -229,14 +235,13 @@ function App() {
             </>
             :
             null
-
         }
       </div>
 
       {/* scroll to top button */}
       {showScrollButton && (
         <button className="scroll-to-top" onClick={handleScrollToTop}>
-        <FaArrowCircleUp style={{fontSize:'25px'}}/>
+          <FaArrowCircleUp style={{ fontSize: '25px' }} />
         </button>
       )}
     </>

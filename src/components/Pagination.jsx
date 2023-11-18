@@ -11,7 +11,8 @@ const PaginationItem = ({ page, currentPage, onPageChange }) => {
 
     return (
         <li className='liStyles' style={{
-            backgroundColor: page === currentPage ? '#406bc3' : 'transparent'
+            backgroundColor: page === currentPage ? '#406bc3' : 'transparent',
+            color: page === currentPage ? 'white' : 'black',
         }} onClick={() => onPageChange(page)}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                 <span style={{ display: 'inline-block', fontWeight: '500' }}>{page}</span>
