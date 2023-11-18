@@ -107,13 +107,13 @@ function App() {
 
   return (
     <>
-      <div className='dashboard'>
-        <div className='lg:mx-9 min-h-screen mx-auto flex flex-wrap md:flex-nowrap 
-        items-center  justify-center py-3' style={{backgroundColor: '#dfdfdf', borderRadius: '15px' }}>
+      <div className='dashboard m-0 p-0 flex justify-center items-center h-full w-full'>
+        <div className=' py-6 w-full max-w-[1200px] flex flex-wrap md:flex-nowrap 
+        items-start  justify-center ' style={{backgroundColor: '#dfdfdf', borderRadius: '15px' }}>
 
           {/* Input Panel  */}
 
-          <div className='panel'>
+          <div className='panel '>
             <span style={{ color: 'black', fontSize: '35px', marginBottom: '15px' }}>
               Panel Editor
             </span>
@@ -188,7 +188,7 @@ function App() {
           </div>
 
           {/* for Pagination */}
-          <div className='container'>
+          <div className='container m-0'>
             <Pagination
               currentPage={currentPage}
               total={10}
