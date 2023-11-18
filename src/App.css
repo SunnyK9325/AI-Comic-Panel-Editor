@@ -92,25 +92,16 @@ textarea {
   height: 6rem;
   padding: 0.5rem;
   font-size: 16px;
-  /* Slightly increased font size for better readability */
-  color: #fff;
-  /* White text color */
-  border: 2px solid #3498db;
-  /* A blue border color */
+  color: white;
+  border: 3px solid white;
   outline: none;
   font-family: 'Comic Sans MS', cursive;
-  /* Updated font family */
   border-radius: 0.5rem;
-  /* Slightly increased border-radius for rounded corners */
-  background-color: #3f5870;
-  /* Darker background color */
+  background-color: black;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   box-sizing: border-box;
-  /* Include padding and border in the element's total width and height */
   margin-bottom: 1rem;
-  /* Added some bottom margin for spacing */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* A subtle box shadow */
 }
 
 
@@ -119,8 +110,7 @@ textarea::placeholder {
 }
 
 textarea:focus {
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  border-color: #F3B664;
 }
 
 .dark textarea {
