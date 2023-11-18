@@ -1,9 +1,11 @@
 .top-right {
     right: 1rem;
-    left: 70%;
+    
     position: absolute;
     top: -2px;
-    transform: skew(-15deg);
+    transform: skew(-9deg);
+    width: fit-content;
+    min-width: 65px;
   }
   
   .bottom-left {
@@ -27,10 +29,10 @@
     border: solid 12px transparent;
     border-left: solid 12px #000;
     border-top: solid 12px #000;
-    bottom: -24px;
+    bottom: -25px;
     content: "";
     height: 0;
-    left: 24px;
+    right: 25px;
     position: absolute;
     transform: skew(-15deg);
     width: 0;
@@ -40,10 +42,10 @@
     border: solid 10px transparent;
     border-left: solid 10px #fff;
     border-top: solid 10px #fff;
-    bottom: -19px;
+    bottom: -18px;
     content: "";
     height: 0;
-    left: 27px;
+    right: 27px;
     position: absolute;
     transform: skew(-15deg);
     width: 0;

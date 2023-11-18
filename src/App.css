@@ -43,14 +43,14 @@
   .panel {
     margin-left: 0;
     margin-right: 0;
+    width: 100%;
   }
 }
 
 .panel {
   max-height: 70%;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  /* margin-bottom: 5rem; */
+  /* margin-left: 3rem;
+  margin-right: 3rem; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

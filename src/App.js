@@ -115,12 +115,12 @@ function App() {
 
           {/* Input Panel  */}
 
-          <div className='panel '>
+          <div className='panel m-0 md:m-12'>
             <span style={{ color: 'black', fontSize: '35px', marginBottom: '15px' }}>
               Panel Editor
             </span>
 
-            <hr style={{ marginBottom: '2rem', borderBottom: '2px solid red', width: '75%' }} />
+            <hr style={{ marginBottom: '2rem', borderBottom: '2px solid #F11A7B', width: '75%' }} />
 
             {/* prompt box */}
             <div className="promptBox">
@@ -209,20 +209,21 @@ function App() {
       </div>
 
       {/* preview comic section  */}
-      <div className={`mx-auto flex flex-col justify-center items-center ${submitBtn ? 'my-40' : ''}`}
-        style={{ flexDirection: 'row', backgroundColor: 'white', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-evenly' }}>
+      <div className={`mx-auto flex justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
         {
           submitBtn ?
             <>
               <span></span>
-              <div className="relative" style={{ display: 'flex', flexWrap: 'wrap' }}>
+              <div className="relative w-full " 
+               style={{ backgroundColor: '#F1EFEF', display: 'flex', alignItems:'center', justifyContent:'space-evenly' , flex: '0 0 50%', flexDirection:"row", borderRadius:'5px',  flexWrap:'wrap'}}
+              >
                 {filteredImages.map((imageSrc, index) => (
-                  <div key={index} className="relative" style={{ flex: '0 0 50%', boxSizing: 'border-box', padding: '5px' }}>
+                  <div key={index} className='w-full  h-full p-4' style={{position:'relative', display:'flex', justifyContent:'space-evenly', alignItems:'center', flexBasis:'50%'}}>
                     <img
-                      style={{ border: '1px solid black', margin: 'auto' }}
+                      style={{ display:'flex',border: '1px solid black', margin: '25px' }}
                       src={imageSrc}
                       alt={`Fetched ${index + 1}`}
-                      className='block border-[0.1rem] rounded my-2 max-h-[50rem] max-w-[50rem] md:w-[80%] md:h-[80%]'
+                      className='block border-[0.1rem] rounded my-2 max-h-[40rem] w-[300px] max-w-[40rem] md:w-[80%] md:h-[80%]'
                     />
                     {bubbleArray[index] && (
                       <div key={index} className="speech top-right">

@@ -8,7 +8,7 @@ export const Loader = () => {
             height: '5rem',
             color: '#FF8F8F',
             transform: 'rotate(45deg)',
-            animation: 'spin 2s linear infinite',
+            animation: 'spin 1.5s linear infinite',
             willChange: 'transform'
           }}
         >
