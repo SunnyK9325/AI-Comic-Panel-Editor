@@ -1,12 +1,13 @@
 import './App.css';
 import './components/Pagination.css'
 import './components/PaginationItem.css'
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import Pagination from './components/Pagination'
 import { query } from './api/handle';
 import { GoCommandPalette } from "react-icons/go";
 import { HiOutlineAnnotation } from "react-icons/hi";
 import { CiGrid2H } from "react-icons/ci";
+import { FaArrowCircleUp } from "react-icons/fa";
 
 function App() {
 
@@ -83,6 +84,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+//////////////////////////  Scroll to top  //////////////////////////
 
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -91,110 +93,127 @@ function App() {
     });
   };
 
+//////////////////////////  Scroll to bottom  //////////////////////////
+  const handleScroll = () => {
+    setSubmitBtn(!submitBtn);
+    window.scroll({
+      top: document.body.offsetHeight,
+      left: 0, 
+      behavior: 'smooth',
+    });
+  }
+
   const filteredImages = imageArray.filter((image) => image !== undefined);
 
   return (
     <>
-      <div className='lg:mx-9 min-h-screen mx-auto flex flex-wrap md:flex-nowrap 
-        items-center  justify-center py-3' style={{margin:'100px', backgroundColor:'#dfdfdf', borderRadius:'15px'}}>
-        {/* Input Panel  */}
+      <div className='dashboard'>
+        <div className='lg:mx-9 min-h-screen mx-auto flex flex-wrap md:flex-nowrap 
+        items-center  justify-center py-3' style={{backgroundColor: '#dfdfdf', borderRadius: '15px' }}>
 
-        <div className='panel'>
-          <span style={{ color: 'black', fontSize: '35px', marginBottom: '15px' }}>
-            Panel Editor
-          </span>
+          {/* Input Panel  */}
 
-          <hr style={{ marginBottom: '25px', borderBottom: '2px solid red', width:'75%' }} />
+          <div className='panel'>
+            <span style={{ color: 'black', fontSize: '35px', marginBottom: '15px' }}>
+              Panel Editor
+            </span>
 
-          {/* prompt box */}
-          <div className="promptBox">
-          <span style={{ color: 'grey', fontSize:'20px' }}>Prompt</span>
-            <textarea
-              required={true}
-              value={inputText}
-              placeholder='Enter prompt to generate an image'
-              className='textarea'
-              onChange={(e) => setInputText(e.target.value)}
-            />
+            <hr style={{ marginBottom: '2rem', borderBottom: '2px solid red', width: '75%' }} />
 
-            {/* Prompt generate Button */}
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <button onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
-              </button>
-              <button onClick={() => setSubmitBtn(!submitBtn)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {!submitBtn && <CiGrid2H style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />}
-                {
-                  submitBtn ? 'Hide Preview' : 'See Preview'
-                }
-              </button>
+            {/* prompt box */}
+            <div className="promptBox">
+              <span style={{ color: 'grey', fontSize: '20px' }}>Prompt</span>
+              <textarea
+                required={true}
+                value={inputText}
+                placeholder='Enter prompt to generate an image'
+                className='textarea'
+                onChange={(e) => setInputText(e.target.value)}
+              />
+
+              {/* Prompt generate Button */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap:'wrap' }}>
+                
+                <button onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
+                </button>
+                
+                {/* <button onClick={() => setSubmitBtn(!submitBtn)}  */}
+                <button onClick={handleScroll} 
+                style={{ display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center' }}>
+                  {!submitBtn && <CiGrid2H style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />}
+                  {
+                    submitBtn ? 'Hide Preview' : 'Preview'
+                  }
+                </button>
+              </div>
+            </div>
+
+            {/* Add space between prompt box and speech bubble box */}
+            <div style={{ margin: '1rem 0' }}></div>
+
+            {/* speech bubble box */}
+            <div className='textBox'>
+              <div>
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={isTextEnabled}
+                    onChange={() => setIsTextEnabled(!isTextEnabled)}
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                  />
+                  <span style={{ color: 'grey', fontSize: '18px' }}>Customise Speech Bubble</span>
+                </label>
+              </div>
+
+
+              <textarea
+                value={textValue}
+                placeholder='Enter text'
+                onChange={(e) => setTextValue(e.target.value)}
+                style={!isTextEnabled ? { opacity: '0.5', cursor: 'not-allowed' } : {}}
+                disabled={!isTextEnabled}
+                className='textarea'
+              />
+
+              {/* Speech Bubble Button */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <button onClick={handleText} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <HiOutlineAnnotation style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />Add Text </button>
+              </div>
+
             </div>
           </div>
 
-          {/* Add space between prompt box and speech bubble box */}
-          <div style={{ margin: '1rem 0' }}></div>
-
-          {/* speech bubble box */}
-          <div className='textBox'>
-            <div>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={isTextEnabled}
-                  onChange={() => setIsTextEnabled(!isTextEnabled)}
-                  className="form-checkbox h-5 w-5 text-blue-600"
-                />
-                <span style={{ color: 'grey', fontSize:'18px' }}>Customise Speech Bubble</span>
-              </label>
-            </div>
-
-
-            <textarea
-              value={textValue}
-              placeholder='Enter text'
-              onChange={(e) => setTextValue(e.target.value)}
-              style={!isTextEnabled ? { opacity: '0.5', cursor: 'not-allowed' } : {}}
-              disabled={!isTextEnabled}
-              className='textarea'
+          {/* for Pagination */}
+          <div className='container'>
+            <Pagination
+              currentPage={currentPage}
+              total={10}
+              limit={1}
+              onPageChange={(page) => setCurrentPage(page)}
+              imageArray={imageArray}
+              isLoading={isLoading}
+              bubbleArray={bubbleArray}
             />
-
-            {/* Speech Bubble Button */}
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button onClick={handleText} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <HiOutlineAnnotation style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />Add Text </button>
-            </div>
-
           </div>
-        </div>
-        {/* -------------------------------------------------------------------------------------------------- */}
-
-        {/* for Pagination */}
-        <div className='container'>
-        <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-        <span style={{fontSize:'20px'}}>Comic Panel Display</span>
-        </div>
-          <Pagination
-            currentPage={currentPage}
-            total={10}
-            limit={1}
-            onPageChange={(page) => setCurrentPage(page)}
-            imageArray={imageArray}
-            isLoading={isLoading}
-            bubbleArray={bubbleArray}
-          />
         </div>
       </div>
 
       {/* preview comic section  */}
-      <div className={`mx-auto flex flex-col justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
+      <div className={`mx-auto flex flex-col justify-center items-center ${submitBtn ? 'my-40' : ''}`} 
+      style={{flexDirection:'row', backgroundColor:'yellow'}}>
         {
           submitBtn ?
             <>
               <span></span>
               <div className="relative">
                 {filteredImages.map((imageSrc, index) => (
-                  <div key={index} className="relative">
+                  <div key={index} className="relative" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                     <img
+                      style={{border:'20px solid lightgrey'}}
                       src={imageSrc}
                       alt={`Fetched ${index + 1}`}
                       className='block border-[0.1rem] rounded my-2 max-h-[50rem] max-w-[50rem] md:w-[80%] md:h-[80%]'
@@ -217,7 +236,7 @@ function App() {
       {/* scroll to top button */}
       {showScrollButton && (
         <button className="scroll-to-top" onClick={handleScrollToTop}>
-          &#9650;
+        <FaArrowCircleUp style={{fontSize:'25px'}}/>
         </button>
       )}
     </>

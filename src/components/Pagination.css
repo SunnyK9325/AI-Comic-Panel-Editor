@@ -62,7 +62,7 @@
 
 .liStyles {
     display: inline-block;
-    margin: 8px;
+    margin: 5px;
     padding: 0.5rem;
     border: 1px solid #406bc3;
     color: black;
@@ -78,6 +78,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
+    margin-bottom: 11rem;
+    margin-right: 2rem;
     gap: 20px;
 }
 
@@ -85,8 +87,8 @@
     object-fit: cover;
     height: auto;
     width: 100%;
-    max-height: 32rem;
-    max-width: 32rem;
+    max-height: 27rem;
+    max-width: 27rem;
     
 }
 
@@ -101,8 +103,8 @@
 
 .loaderContainerStyles {
     object-fit: cover;
-    height: 32rem;
-    width: 32rem;
+    height: 25rem;
+    width: 25rem;
     display: flex;
     justify-content: center;
     align-items: center;

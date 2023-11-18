@@ -13,7 +13,7 @@ const PaginationItem = ({ page, currentPage, onPageChange }) => {
         <li className='liStyles' style={{
             backgroundColor: page === currentPage ? '#406bc3' : 'transparent'
         }} onClick={() => onPageChange(page)}>
-            <div style={{display:'flex', alignItems:'center', justifyContent:'space-evenly'}}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                 <span style={{ display: 'inline-block', fontWeight: '500' }}>{page}</span>
             </div>
         </li>
@@ -26,6 +26,9 @@ const Pagination = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
 
     return (
         <div className='containerStyles'>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ fontSize: '1.5rem' }}>Comic Panel Display</span>
+            </div>
             <div className='borderStyles'>
                 {isLoading ? (
                     <div className='loaderContainerStyles'>
@@ -33,7 +36,7 @@ const Pagination = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
                     </div>
                 ) : imageArray[currentPage - 1] ? (
                     <div style={{ position: 'relative' }}>
-                        <img className='imgStyles' src={imageArray[currentPage - 1]} alt={`Fetched  `} style={{border: '5px solid lightcyan'}}/>
+                        <img className='imgStyles' src={imageArray[currentPage - 1]} alt={`Fetched  `} style={{ border: '5px solid lightcyan' }} />
                         {bubbleArray[currentPage - 1] ? (
                             <div className='speechBubbleStyles'>{bubbleArray[currentPage - 1]}</div>
                         ) : null}
