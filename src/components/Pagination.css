@@ -60,6 +60,8 @@
     border-color: #ddd;
 }
 
+
+
 .liStyles {
     display: inline-block;
     margin: 5px;
@@ -79,6 +81,11 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }  
   
+  @media screen and (max-width: 768px) {
+    .liStyles {
+        margin: 0;
+    }
+}
 
 .containerStyles {
     display: flex;

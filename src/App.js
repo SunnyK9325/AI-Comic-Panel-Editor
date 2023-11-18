@@ -115,7 +115,7 @@ function App() {
 
           {/* Input Panel  */}
 
-          <div className='panel m-0 md:m-12'>
+          <div className='panel m-0 md:mx-12'>
             <span style={{ color: 'black', fontSize: '35px', marginBottom: '15px' }}>
               Panel Editor
             </span>
@@ -134,7 +134,7 @@ function App() {
               />
 
               {/* Prompt generate Button */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <div className='btngrp' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
 
                 {/* <button onClick={() => setSubmitBtn(!submitBtn)}  */}
                 <button onClick={handleScroll}
@@ -185,7 +185,7 @@ function App() {
               />
 
               {/* Speech Bubble Button */}
-              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <div className='bubblebtn' style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <button onClick={handleText} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <HiOutlineAnnotation style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />Add Text </button>
               </div>
@@ -213,7 +213,6 @@ function App() {
         {
           submitBtn ?
             <>
-              <span></span>
               <div className="relative w-full " 
                style={{ backgroundColor: '#F1EFEF', display: 'flex', alignItems:'center', justifyContent:'space-evenly' , flex: '0 0 50%', flexDirection:"row", borderRadius:'5px',  flexWrap:'wrap'}}
               >
