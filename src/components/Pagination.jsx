@@ -28,7 +28,7 @@ const Pagination = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
     return (
         <div className='containerStyles'>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: '1.5rem' }}>Comic Panel Display</span>
+                <span style={{ fontSize: '1.5rem' , fontWeight:'500'}}>Comic Panel Display</span>
             </div>
             <div className='borderStyles'>
                 {isLoading ? (
