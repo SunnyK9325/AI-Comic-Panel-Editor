@@ -2,7 +2,7 @@
     right: 1rem;
     
     position: absolute;
-    top: -2px;
+    top: 14px;
     transform: skew(-9deg);
     width: fit-content;
     min-width: 65px;
