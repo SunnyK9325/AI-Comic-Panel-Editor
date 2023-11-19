@@ -1,38 +1,42 @@
-import './App.css';
-import './components/Pagination.css'
-import './components/PaginationItem.css'
 import { useEffect, useState } from "react";
-import Pagination from './components/Pagination'
-import { query } from './api/handle';
+import ComicPanel from './components/ComicPanel'
+import { query } from './api/FetchData';
+import './App.css';
+import './components/ComicPanel.css'
+import './components/SpeechBubble.css'
 import { GoCommandPalette } from "react-icons/go";
 import { HiOutlineAnnotation } from "react-icons/hi";
 import { CiGrid2H } from "react-icons/ci";
 import { FaArrowCircleUp } from "react-icons/fa";
 
-function App() {
+// Constants
+const TOTAL_PAGES = 10;
+const DEFAULT_PAGE = 1;
+const SCROLL_THRESHOLD = 100;
 
+function App() {
+  // State variables
   const [inputText, setInputText] = useState('');
-  const [imageArray, setImageArray] = useState(Array.from({ length: 10 }));
+  const [imageArray, setImageArray] = useState(Array.from({ length: TOTAL_PAGES }));
   const [submitBtn, setSubmitBtn] = useState(false)
-  // for Pagination
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE)
   const [textValue, setTextValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [bubbleArray, setBubbleArray] = useState(Array.from({ length: 10 }));
+  const [bubbleArray, setBubbleArray] = useState(Array.from({ length: TOTAL_PAGES }));
 
   const [showScrollButton, setShowScrollButton] = useState(false);
 
+  // Function to handle image generation query
   const handleQuery = async () => {
-    setIsLoading(true); // Set isLoading to true while fetching
+    setIsLoading(true); // Set isLoading to true when the image is being fetched
     try {
-      // Check if the textarea is empty 
+      // If the input is empty, show an alert and return
       if (inputText === '') {
-        alert('Please enter some input. ')
+        alert('Please enter some Input')
         return;
       }
 
-      // First as soon as someone submits the prompt 
-      // the previous image for that page should be removed. 
+      // Remove the previous image for the current page
       setImageArray((prevImages) => {
         const newImages = [...prevImages];
         newImages[currentPage - 1] = undefined;
@@ -42,25 +46,25 @@ function App() {
       const response = await query({ "inputs": inputText });
       const imageUrl = URL.createObjectURL(response);
 
+      // Update the image array with the new image URL
       setImageArray((prevImages) => {
         const newImages = [...prevImages];
         newImages[currentPage - 1] = imageUrl;
         return newImages;
       });
+
       setInputText('');
 
     } catch (error) {
       console.log('Fetching image failed:', error);
-      setIsLoading(false); // Set isLoading to false when the image is loaded or in case of an error
     } finally {
       setIsLoading(false); // Set isLoading to false when the image is loaded or in case of an error
     }
   };
 
-
+  // Function to handle adding text to the speech bubble
   const handleText = () => {
-    // This sets the array value as per the text for 
-    // the corresponding page
+    // Set the array value as per the text for the corresponding page
     setBubbleArray((prevText) => {
       const newText = [...prevText];
       newText[currentPage - 1] = textValue;
@@ -70,11 +74,12 @@ function App() {
     setTextValue('');
   }
 
+  // Effect to handle scrolling and show/hide scroll-to-top button
   useEffect(() => {
     const handleScroll = () => {
       // Show the scroll-to-top button when scrolling down, hide it when at the top
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      setShowScrollButton(scrollY > 100);
+      setShowScrollButton(scrollY > SCROLL_THRESHOLD);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -83,8 +88,8 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  //////////////////////////  Scroll to top  //////////////////////////
 
+  // Function to scroll to the top
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -92,7 +97,7 @@ function App() {
     });
   };
 
-  //////////////////////////  Scroll to bottom  //////////////////////////
+  // Function to scroll to the bottom or hide preview
   const handleScroll = () => {
     setSubmitBtn(!submitBtn);
     if (!submitBtn) {
@@ -104,6 +109,7 @@ function App() {
     }
   }
 
+  // Filter out undefined images
   const filteredImages = imageArray.filter((image) => image !== undefined);
 
   return (
@@ -112,8 +118,7 @@ function App() {
         <div className=' py-6 w-full max-w-[1200px] flex flex-wrap md:flex-nowrap 
         items-start  justify-center ' style={{ backgroundColor: '#dfdfdf', borderRadius: '15px' }}>
 
-          {/* Input Panel  */}
-
+          {/* Panel Editor */}
           <div className='panel m-0 md:mx-12'>
             <span style={{ color: 'black', fontSize: '35px', marginBottom: '15px' }}>
               Panel Editor
@@ -121,9 +126,9 @@ function App() {
 
             <hr style={{ marginBottom: '2rem', borderBottom: '2px solid #F11A7B', width: '75%' }} />
 
-            {/* prompt box */}
+            {/* Prompt box */}
             <div className="promptBox">
-              <span style={{ color: 'grey', fontSize: '20px', fontWeight:'500'  }}>Prompt</span>
+              <span style={{ color: 'grey', fontSize: '20px', fontWeight: '500' }}>Prompt</span>
               <textarea
                 required={true}
                 value={inputText}
@@ -134,8 +139,6 @@ function App() {
 
               {/* Prompt generate Button */}
               <div className='btngrp' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-
-                {/* <button onClick={() => setSubmitBtn(!submitBtn)}  */}
                 <button className='panelButton' onClick={handleScroll}
                   style={{
                     display: 'flex',
@@ -147,24 +150,20 @@ function App() {
                     submitBtn ? 'Hide Preview' : 'Preview'
                   }
                 </button>
-
                 <button className='panelButton' onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
                 </button>
-
-
               </div>
             </div>
 
-            {/* Add space between prompt box and speech bubble box */}
+            {/* Space between prompt box and speech bubble box */}
             <div style={{ margin: '1rem 0' }}></div>
 
-            {/* speech bubble box */}
+            {/* Speech bubble box */}
             <div className='textBox'>
               <div>
-                  <span style={{ color: 'grey', fontSize: '18px', fontWeight:'500' }}>Customise Speech Bubble</span>
+                <span style={{ color: 'grey', fontSize: '18px', fontWeight: '500' }}>Customise Speech Bubble</span>
               </div>
-
 
               <textarea
                 value={textValue}
@@ -178,38 +177,36 @@ function App() {
                 <button className='panelButton' onClick={handleText} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <HiOutlineAnnotation style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />Add Text </button>
               </div>
-
             </div>
           </div>
 
-          {/* for Pagination */}
+          {/* For ComicPanel */}
           <div className='container m-0'>
-            <Pagination
+            <ComicPanel
               currentPage={currentPage}
-              total={10}
-              limit={1}
+              total={TOTAL_PAGES}
+              limit={DEFAULT_PAGE}
               onPageChange={(page) => setCurrentPage(page)}
               imageArray={imageArray}
               isLoading={isLoading}
               bubbleArray={bubbleArray}
-              setTextValue={setTextValue} // for clearing the prompt box
             />
           </div>
         </div>
       </div>
 
-      {/* preview comic section  */}
+      {/* Preview comic section */}
       <div className={`mx-auto flex justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
         {
           submitBtn ?
             <>
-              <div className="relative w-full " 
-               style={{ backgroundColor: '#F1EFEF', display: 'flex', alignItems:'center', justifyContent:'space-evenly' , flex: '0 0 50%', flexDirection:"row", borderRadius:'5px',  flexWrap:'wrap'}}
+              <div className="relative w-full "
+                style={{ backgroundColor: '#F1EFEF', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', flex: '0 0 50%', flexDirection: "row", borderRadius: '5px', flexWrap: 'wrap' }}
               >
                 {filteredImages.map((imageSrc, index) => (
-                  <div key={index} className='w-full  h-full p-4' style={{position:'relative', display:'flex', justifyContent:'space-evenly', alignItems:'center', flexBasis:'50%'}}>
+                  <div key={index} className='w-full  h-full p-4' style={{ position: 'relative', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexBasis: '50%' }}>
                     <img
-                      style={{ display:'flex',border: '1px solid black', margin: '25px' }}
+                      style={{ display: 'flex', border: '1px solid black', margin: '25px' }}
                       src={imageSrc}
                       alt={`Fetched ${index + 1}`}
                       className='block border-[0.1rem] rounded my-2 max-h-[40rem] w-[300px] max-w-[40rem] md:w-[80%] md:h-[80%]'
@@ -228,14 +225,14 @@ function App() {
         }
       </div>
 
-      {/* scroll to top button */}
+      {/* Scroll to top button */}
       {showScrollButton && (
         <button className="scroll-to-top" onClick={handleScrollToTop}>
           <FaArrowCircleUp style={{ fontSize: '25px' }} />
         </button>
       )}
     </>
-
   );
 }
+
 export default App;

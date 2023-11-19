@@ -1,11 +1,3 @@
-.pagination {
-    display: inline-block;
-    padding-left: 0;
-    margin-top: 1rem;
-    /* margin-bottom: 1rem; */
-    border-radius: 0.25rem;
-}
-
 .page-item {
     display: inline;
 }
@@ -18,7 +10,7 @@
 
 .page-item:last-child .page-link {
     border-bottom-right-radius: 0.25rem;
-    border-tp-rt-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
 }
 
 .page-item.active .page-link,
@@ -71,11 +63,10 @@ ul {
     display: inline-block;
     margin: 5px;
     padding: 0.5rem;
-    /* border: 1px solid #406bc3; */
     color: black;
     cursor: pointer;
     background-color: white;
-    border-radius: 12px; /* Increase border-radius for a rounded shape */
+    border-radius: 12px; 
     min-width: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -88,7 +79,6 @@ ul {
   
   @media screen and (max-width: 768px) {
     .liStyles {
-        /* margin: 0; */
         flex-basis: 17%;
     }
 }
