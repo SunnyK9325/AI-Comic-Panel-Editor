@@ -205,11 +205,11 @@ function App() {
       </div>
 
       {/* Preview comic section */}
-      <div ref={ref} className={`mx-auto flex justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
+      <div className={`mx-auto flex justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
         {
           submitBtn ?
             <>
-              <div className="relative w-full "
+              <div ref={ref} className="relative w-full "
                 style={{ backgroundColor: '#F1EFEF', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', flex: '0 0 50%', flexDirection: "row", borderRadius: '5px', flexWrap: 'wrap' }}
               >
                 {filteredImages.map((imageSrc, index) => (
