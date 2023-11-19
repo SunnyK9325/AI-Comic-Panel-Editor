@@ -7,7 +7,7 @@ const range = (start, end) => {
     return [...Array(end).keys()].map((el) => el + start);
 };
 
-const PaginationItem = ({ page, currentPage, onPageChange }) => {
+const PaginationItem = ({ page, currentPage, onPageChange, setTextValue }) => {
 
     return (
         <li className='liStyles' style={{
@@ -28,7 +28,7 @@ const Pagination = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
     return (
         <div className='containerStyles'>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: '1.5rem' , fontWeight:'500'}}>Comic Panel Display</span>
+                <span style={{ fontSize: '1.5rem' , fontWeight:'500', paddingBottom:'20px'}}>Comic Panel Display</span>
             </div>
             <div className='borderStyles'>
                 {isLoading ? (
@@ -39,7 +39,7 @@ const Pagination = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
                     <div style={{ position: 'relative' }}>
                         <img className='imgStyles' src={imageArray[currentPage - 1]} alt={`Fetched  `} style={{ border: '2px solid #D2DE32' }} />
                         {bubbleArray[currentPage - 1] ? (
-                            <div className='speechBubbleStyles'>{bubbleArray[currentPage - 1]}</div>
+                            <div className='bubble tp-rt'>{bubbleArray[currentPage - 1]}</div>
                         ) : null}
                     </div>
                 ) :

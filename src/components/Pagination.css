@@ -18,7 +18,7 @@
 
 .page-item:last-child .page-link {
     border-bottom-right-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-tp-rt-radius: 0.25rem;
 }
 
 .page-item.active .page-link,
@@ -104,21 +104,8 @@
     width: 100%;
     max-height: 27rem;
     max-width: 27rem;
-    
+    position: relative;
 }
-
-
-.speechBubbleStyles {
-    position: absolute;
-    bottom: 20px; /* Adjusted to position the speech bubble at the bottom */
-    right: 20px;
-    background-color: #fff;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    max-width: 300px; /* Set a maximum width for the speech bubble */  
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
 
 .loaderContainerStyles {
     object-fit: cover;
@@ -142,3 +129,60 @@
     font-size: 35px; 
     font-weight: 500;
   }
+
+  .tp-rt {
+    right: -2rem;
+    
+    position: absolute;
+    top: -37px;
+    transform: skew(-9deg);
+    width: fit-content;
+    min-width: 65px;
+    max-width: 220px;
+  }
+  
+  .bottom-left {
+    bottom: -2px;
+    position: absolute;
+    left: 6px;
+    transform: skew(-15deg);
+  }
+  
+  .bubble {
+    background-color: #fff;
+    border: solid 2px #000;
+    border-radius: 12px;
+    display: inline-block;
+    margin: .5em;
+    padding: .5em 1em;
+    position: absolute;
+    font-size: 14px;
+  }
+  
+  .bubble:before {
+    border: solid 12px transparent;
+    border-left: solid 12px #000;
+    border-top: solid 12px #000;
+    bottom: -25px;
+    content: "";
+    height: 0;
+    right: 25px;
+    position: absolute;
+    transform: skew(-15deg);
+    width: 0;
+  }
+  
+  .bubble:after {
+    border: solid 10px transparent;
+    border-left: solid 10px #fff;
+    border-top: solid 10px #fff;
+    bottom: -18px;
+    content: "";
+    height: 0;
+    right: 27px;
+    position: absolute;
+    transform: skew(-15deg);
+    width: 0;
+  }
+  
+  

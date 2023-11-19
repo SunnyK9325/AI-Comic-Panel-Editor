@@ -6,6 +6,7 @@
     transform: skew(-9deg);
     width: fit-content;
     min-width: 65px;
+    max-width: 220px;
   }
   
   .bottom-left {
@@ -23,6 +24,7 @@
     margin: .5em;
     padding: .5em 1em;
     position: absolute;
+    font-size: 14px;
   }
   
   .speech:before {
