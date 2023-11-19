@@ -16,7 +16,7 @@ function App() {
   const [submitBtn, setSubmitBtn] = useState(false)
   // for Pagination
   const [currentPage, setCurrentPage] = useState(1)
-  const [isTextEnabled, setIsTextEnabled] = useState(false);
+  // const [isTextEnabled, setIsTextEnabled] = useState(false);
   const [textValue, setTextValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [bubbleArray, setBubbleArray] = useState(Array.from({ length: 10 }));
@@ -124,7 +124,7 @@ function App() {
 
             {/* prompt box */}
             <div className="promptBox">
-              <span style={{ color: 'grey', fontSize: '20px' }}>Prompt</span>
+              <span style={{ color: 'grey', fontSize: '20px', fontWeight:'500'  }}>Prompt</span>
               <textarea
                 required={true}
                 value={inputText}
@@ -163,15 +163,15 @@ function App() {
             {/* speech bubble box */}
             <div className='textBox'>
               <div>
-                <label className="flex items-center space-x-2">
+                {/* <label className="flex items-center space-x-2">
                   <input
                     type="checkbox"
                     checked={isTextEnabled}
                     onChange={() => setIsTextEnabled(!isTextEnabled)}
                     className="form-checkbox h-5 w-5 text-blue-600"
-                  />
-                  <span style={{ color: 'grey', fontSize: '18px' }}>Customise Speech Bubble</span>
-                </label>
+                  /> */}
+                  <span style={{ color: 'grey', fontSize: '18px', fontWeight:'500' }}>Customise Speech Bubble</span>
+                {/* </label> */}
               </div>
 
 
@@ -179,8 +179,8 @@ function App() {
                 value={textValue}
                 placeholder='Enter text'
                 onChange={(e) => setTextValue(e.target.value)}
-                style={!isTextEnabled ? { opacity: '0.5', cursor: 'not-allowed' } : {}}
-                disabled={!isTextEnabled}
+                // style={!isTextEnabled ? { opacity: '0.5', cursor: 'not-allowed' }}
+                // disabled={!isTextEnabled}
                 className='textarea'
               />
 
