@@ -60,7 +60,12 @@
     border-color: #ddd;
 }
 
-
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 .liStyles {
     display: inline-block;
@@ -83,7 +88,8 @@
   
   @media screen and (max-width: 768px) {
     .liStyles {
-        margin: 0;
+        /* margin: 0; */
+        flex-basis: 17%;
     }
 }
 
