@@ -80,6 +80,9 @@
   .panel {
     padding: 0;
   }
+  .textarea {
+    height: 12rem;
+  }
 }
 
 .promptBox {
