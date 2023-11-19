@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ComicPanel from './components/ComicPanel'
 import { query } from './api/FetchData';
 import './App.css';
@@ -21,14 +21,19 @@ function App() {
   const [submitBtn, setSubmitBtn] = useState(false)
   const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE)
   const [textValue, setTextValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState([false, false,false,false,false,false,false,false,false,false]);
   const [bubbleArray, setBubbleArray] = useState(Array.from({ length: TOTAL_PAGES }));
 
   const [showScrollButton, setShowScrollButton] = useState(false);
-
+  const ref = useRef(null);
   // Function to handle image generation query
   const handleQuery = async () => {
-    setIsLoading(true); // Set isLoading to true when the image is being fetched
+    setIsLoading(isLoading.map((x, ind)=>{
+      if(ind === currentPage - 1){
+        return true;
+      }
+      return x;
+    })); // Set isLoading to true when the image is being fetched
     try {
       // If the input is empty, show an alert and return
       if (inputText === '') {
@@ -58,7 +63,12 @@ function App() {
     } catch (error) {
       console.log('Fetching image failed:', error);
     } finally {
-      setIsLoading(false); // Set isLoading to false when the image is loaded or in case of an error
+      setIsLoading(isLoading.map((x, ind)=>{
+        if(ind === currentPage - 1){
+          return false;
+        }
+        return x;
+      })); // Set isLoading to false when the image is loaded or in case of an error
     }
   };
 
@@ -97,15 +107,12 @@ function App() {
     });
   };
 
-  // Function to scroll to the bottom or hide preview
+  // Function to scroll to the bottom
   const handleScroll = () => {
     setSubmitBtn(!submitBtn);
     if (!submitBtn) {
-      window.scroll({
-        top: document.body.offsetHeight,
-        left: 0,
-        behavior: 'smooth',
-      });
+      // console.log("here");
+      ref.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
@@ -139,6 +146,7 @@ function App() {
 
               {/* Prompt generate Button */}
               <div className='btngrp' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                
                 <button className='panelButton' onClick={handleScroll}
                   style={{
                     display: 'flex',
@@ -150,6 +158,7 @@ function App() {
                     submitBtn ? 'Hide Preview' : 'Preview'
                   }
                 </button>
+                
                 <button className='panelButton' onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
                 </button>
@@ -196,7 +205,7 @@ function App() {
       </div>
 
       {/* Preview comic section */}
-      <div className={`mx-auto flex justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
+      <div ref={ref} className={`mx-auto flex justify-center items-center ${submitBtn ? 'my-40' : ''}`}>
         {
           submitBtn ?
             <>

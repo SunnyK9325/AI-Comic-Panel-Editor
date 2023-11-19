@@ -36,7 +36,7 @@ const ComicPanel = ({ currentPage, total, limit, onPageChange, imageArray, isLoa
 
             {/* Container for the comic panel display */}
             <div className='borderStyles'>
-                {isLoading ? (
+                {isLoading[currentPage - 1] ? (
                     // Show loader if data is still loading
                     <div className='loaderContainerStyles'>
                         <LoadingIndicator />

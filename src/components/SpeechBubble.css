@@ -25,6 +25,7 @@
     padding: .5em 1em;
     position: absolute;
     font-size: 14px;
+    font-family: 'Comic Sans MS', cursive;
   }
   
   .speech:before {

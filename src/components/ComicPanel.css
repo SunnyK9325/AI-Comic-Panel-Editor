@@ -1,3 +1,4 @@
+
 .page-item {
     display: inline;
 }
@@ -105,11 +106,48 @@ ul {
 
 .loaderContainerStyles {
     object-fit: cover;
-    height: 25rem;
-    width: 25rem;
+    height: 100%;
+    width: 100%;
+    min-width: 27rem;
+    min-height: 27rem;
+    max-height: 27rem;
+    max-width: 27rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .loaderContainerStyles {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    min-width: 27rem;
+    min-height: 27rem;
+    max-height: 27rem;
+    max-width: 27rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .loaderContainerStyles {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    min-width: 20rem;
+    min-height: 20rem;
+    max-height: 27rem;
+    max-width: 27rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
 }
 
 .borderStyles {
@@ -153,6 +191,7 @@ ul {
     padding: .5em 1em;
     position: absolute;
     font-size: 14px;
+    font-family: 'Comic Sans MS', cursive;;
   }
   
   .bubble:before {
