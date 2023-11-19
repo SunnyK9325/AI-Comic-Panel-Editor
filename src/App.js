@@ -136,7 +136,7 @@ function App() {
               <div className='btngrp' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
 
                 {/* <button onClick={() => setSubmitBtn(!submitBtn)}  */}
-                <button onClick={handleScroll}
+                <button className='panelButton' onClick={handleScroll}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -148,7 +148,7 @@ function App() {
                   }
                 </button>
 
-                <button onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <button className='panelButton' onClick={handleQuery} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <GoCommandPalette style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} /> Generate
                 </button>
 
@@ -175,7 +175,7 @@ function App() {
 
               {/* Speech Bubble Button */}
               <div className='bubblebtn' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <button onClick={handleText} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <button className='panelButton' onClick={handleText} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <HiOutlineAnnotation style={{ marginRight: '6px', fontWeight: 'bold', fontSize: '16px' }} />Add Text </button>
               </div>
 
