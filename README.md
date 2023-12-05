@@ -1,3 +1,6 @@
+![image](https://github.com/SunnyK9325/AI-Comic-Panel-Editor/assets/95949944/0844a61e-7073-4bfd-b8a5-2eb9844e886d)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
